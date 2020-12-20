@@ -1,6 +1,8 @@
 const express = require("express")
 const router = express.Router()
 const userdata = require("../models/userschema")
+
+
 //get all userdata(read)......
 router.get("/get", async(req,res)=>{
     try{
@@ -11,8 +13,8 @@ router.get("/get", async(req,res)=>{
         res.status(400).send(err)
     }
 })
-//get the  indvisiul userdata id........
 
+//get the  indvisiul userdata id........
 router.get("/:id",async(req,res)=>{
     try{
         const indivisualget = await userdata.findById(req.params.id)
@@ -28,8 +30,8 @@ router.get("/:id",async(req,res)=>{
         res.status(500).send(err)
     }
 })
-//for create data.......
 
+//for create data.......
 router.post("/post",async(req,res)=>{
     console.log(req.body);
     try{
@@ -41,8 +43,8 @@ router.post("/post",async(req,res)=>{
          return res.status(400).send(err)
     }
 })
-//for delete userdata by id.....
 
+//for delete userdata by id.....
 router.delete("/del/:id", async(req,res)=>{
     try{
         const deletedata = await userdata.findByIdAndDelete(req.params.id)
@@ -56,8 +58,8 @@ router.delete("/del/:id", async(req,res)=>{
         res.status(500).send(err)
     }
 })
-//for update ........
 
+//for update ........
 router.patch("/patch/:id", async(req,res)=>{
     try{
         const patchdata = await userdata.findByIdAndUpdate(req.params.id, req.body,{new:true})
